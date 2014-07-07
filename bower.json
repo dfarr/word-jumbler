@@ -1,0 +1,21 @@
+{
+  "name": "word-jumbler",
+  "version": "0.0.0",
+  "authors": [
+    "David Farr <david.f.farr@gmail.com>"
+  ],
+  "description": "My first web component.",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~0.3.3"
+  }
+}

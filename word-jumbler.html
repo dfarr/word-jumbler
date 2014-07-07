@@ -1,0 +1,82 @@
+<link rel="import" href="./bower_components/polymer/polymer.html">
+
+<polymer-element name="word-jumbler" attributes="words delay">
+
+	<template>
+		<style>
+			::host {
+				display: block;
+				width: 100%;
+			}
+			.container ::content h2 {
+				margin: 0;
+				padding: 0;
+			}
+
+			#jumbler {
+				margin-left: 5px;
+				/*border-bottom: 2px dashed;*/
+			}
+
+			#jumbler > h2 {
+				margin: 0;
+				font-weight: 200;
+				position: absolute;
+				border-bottom: 2px dashed;
+
+				transition: all 0.5s ease-in;
+			}
+
+			#jumbler > h2[visible] {
+				opacity: 1;
+				visibility: visible;
+			}
+
+			#jumbler > h2:not([visible]) {
+				opacity: 0;
+				visibility: hidden;
+			}
+
+		</style>
+		<div class="container" horizontal layout>
+			<content select="h2"></content>
+			<div id="jumbler">
+				<template repeat="{{ word, index in words }}">
+					<h2 visible?="{{ index===current }}">{{ word }}</h2>
+				</template>
+			</div>
+		</div>
+
+
+		<!-- <div class="test">hello world</div> -->
+
+	</template>
+
+	<script>
+		Polymer('word-jumbler', {
+
+			current: -1,
+
+			delay: 2000,
+
+			change: function() {
+
+				var next = this.current + 1;
+
+				this.current = next < this.words.length ? next : 0;
+
+				this.async(this.change, null, this.delay);
+			},
+
+			created: function() {
+				this.words = [];
+			},
+
+			ready: function() {
+				this.change();
+			}
+
+		});
+	</script>
+
+</polymer-element>
